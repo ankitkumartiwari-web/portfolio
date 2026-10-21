@@ -129,10 +129,17 @@ for (const file of sourceFiles) {
 const distFiles = walk(OUT);
 const distRel = new Set(distFiles.map(rel));
 const brokenInDist = [];
+const suspectGlyphs = [];
 
 for (const file of distFiles.filter((f) => f.toLowerCase().endsWith(".html"))) {
   const content = readFileSync(file, "utf8");
   const dir = dirname(file);
+
+  // a lone "?" as element text means a glyph was mangled (e.g. "→" -> "?")
+  for (const m of content.matchAll(/>\s*\?\s*</g)) {
+    suspectGlyphs.push(`${rel(file)}  (element text is a single "?")`);
+  }
+
   const refs = [];
   for (const m of content.matchAll(HTML_ASSET_ATTR)) refs.push(m[1]);
   for (const m of content.matchAll(HTML_HREF)) refs.push(m[1]);
@@ -180,7 +187,12 @@ if (brokenInDist.length) {
   for (const b of [...new Set(brokenInDist)].sort()) console.log(`  ${b}`);
 }
 
-if (missing.size || brokenInDist.length) {
+if (suspectGlyphs.length) {
+  console.log(`\n${suspectGlyphs.length} suspicious "?" glyph(s) in the build output:`);
+  for (const g of [...new Set(suspectGlyphs)].sort()) console.log(`  ${g}`);
+}
+
+if (missing.size || brokenInDist.length || suspectGlyphs.length) {
   if (STRICT) {
     console.error("\nbuild failed (--strict)");
     process.exit(1);
