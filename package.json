@@ -1,0 +1,17 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ankit Tiwari - personal portfolio and project case studies (static site).",
+  "license": "MIT",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:strict": "node scripts/build.mjs --strict",
+    "analyze": "node scripts/analyze.mjs",
+    "preview": "node scripts/serve.mjs",
+    "clean": "node scripts/build.mjs --clean"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
