@@ -225,6 +225,7 @@
         visibility: hidden !important;
       }
     </style>
+    <script src="/js/loader-session.js"></script>
   </head>
   <body>
     <div data-w-id="e5933c9c-a025-aec5-8a5f-716c754f04ad" class="mobile-preloader">
@@ -1306,7 +1307,7 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        if (window.innerWidth > 991) {
+        if (window.innerWidth > 991 && !document.documentElement.classList.contains("portfolio-loader-skip")) {
           // Add no-scroll class to lock scrolling visually
           document.body.classList.add("no-scroll");
 
