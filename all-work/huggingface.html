@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html data-wf-site="674d7854912400fb2c045862" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="An open-source contribution to Hugging Face Hub adding same-bucket file copy support to HfFileSystem, officially released in v2.4.0."
+    />
+    <meta property="og:title" content="Hugging Face Hub | Open-Source Contribution | Ankit Tiwari" />
+    <meta property="og:image" content="../images/huggingface-pr-banner.webp?v=20261101" />
+    <meta
+      property="og:description"
+      content="Same-bucket file copy support for HfFileSystem, merged and released in huggingface_hub v2.4.0."
+    />
+    <meta property="twitter:image" content="../images/huggingface-pr-banner.webp?v=20261101" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <title>Hugging Face Hub | Open-Source Contribution | Ankit Tiwari</title>
+    <link href="../css/ankit-tiwari.webflow.shared.a0276f9df.min.css?v=20261101" rel="stylesheet" type="text/css" />
+    <script
+      tr-color-vars="background,text,toggle-offset,greys"
+      duration="0.5"
+      ease="power1.out"
+      src="https://cdn.jsdelivr.net/gh/flowtricks/scripts@v1.0.4/dark-mode-toggle.js"
+    ></script>
+    <style>
+      .work_showcase-hero-section {
+        min-height: clamp(18rem, 33.25vw, 90svh);
+      }
+
+      .hf-banner-holder {
+        background: #0d1117;
+      }
+
+      .hf-banner {
+        object-fit: contain;
+      }
+
+      .work_showcase-hero-section .overlay-div {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05));
+      }
+
+      .hf-footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-top: 6rem;
+        padding: 2rem clamp(1rem, 6vw, 6rem) 3rem;
+        border-top: 1px solid var(--color--greys);
+        color: var(--color--text);
+      }
+
+      .hf-footer__links,
+      .hf-footer__socials {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem 1.5rem;
+      }
+
+      .hf-footer a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .menu_wrap-flip {
+        display: none;
+      }
+
+      .menu_wrap-flip.is-open {
+        display: flex;
+        position: fixed;
+        inset: 0;
+        height: 100vh;
+        height: 100dvh;
+      }
+
+      .menu_wrap-flip .menu_base-flip {
+        background-color: var(--color--background);
+      }
+
+      .hf-menu-button {
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        appearance: none;
+      }
+
+      .hf-menu-button .nav_hamburger_base-flip {
+        background-color: var(--color--background);
+      }
+
+      .hf-menu-button .nav_hamburger_line-flip {
+        transition: transform 200ms ease;
+      }
+
+      .hf-menu-button[aria-expanded="true"] .nav_hamburger_line-flip:nth-of-type(2) {
+        transform: translateY(4px) rotate(45deg);
+      }
+
+      .hf-menu-button[aria-expanded="true"] .nav_hamburger_line-flip:nth-of-type(3) {
+        transform: translateY(-4px) rotate(-45deg);
+      }
+
+      .hf-menu-button:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 4px;
+      }
+
+      @media (max-width: 767px) {
+        .work_showcase-hero-section {
+          min-height: 18rem;
+        }
+
+        .hf-footer {
+          flex-direction: column;
+          margin-top: 4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fixed-flip-menu">
+      <div class="flip-menu-container">
+        <button
+          class="nav_hamburger_wrap-flip hf-menu-button"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="hf-mobile-menu"
+        >
+          <span class="nav_hamburger_base-flip"></span>
+          <span class="nav_hamburger_line-flip"></span>
+          <span class="nav_hamburger_line-flip"></span>
+        </button>
+      </div>
+      <nav class="menu_wrap-flip" id="hf-mobile-menu" aria-label="Mobile navigation">
+        <div class="menu_base-flip"></div>
+        <div class="menu_contain-flip">
+          <a href="/" class="menu_link-flip w-inline-block"><span class="flip-link-text">Home</span></a>
+          <a href="/about" class="menu_link-flip w-inline-block"><span class="flip-link-text">About</span></a>
+          <a href="/work" class="menu_link-flip w-inline-block"><span class="flip-link-text">Work</span></a>
+          <a href="#contact" class="menu_link-flip w-inline-block"><span class="flip-link-text">Contact</span></a>
+          <div class="menu_link-flip">
+            <a tr-color-toggle="" href="#" class="toggle_wrap w-inline-block"><div class="toggle_inner"></div></a>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <section class="work_showcase-hero-section">
+      <header class="nav-wrap w-nav">
+        <div class="nav-container">
+          <div class="nav_contain">
+            <a href="/" class="nav_link_wrap w-inline-block">
+              <div class="logo-text">©</div>
+              <div class="logo-text">Design by Ankit</div>
+            </a>
+            <div class="nav_nav-elements-container">
+              <div class="nav_navigation-container is-tab-and-down">
+                <div class="nav_navigation-text-wrapper">
+                  <div class="nav_navigation-text-header">Navigation</div>
+                </div>
+                <div class="nav_navigation-link-wrapper">
+                  <a href="/" class="nav_navigation-link-block w-inline-block"><div class="nav_navigation-text-block">Home,</div></a>
+                  <a href="/about" class="nav_navigation-link-block w-inline-block"><div class="nav_navigation-text-block">About,</div></a>
+                  <a href="/work" class="nav_navigation-link-block w-inline-block"><div class="nav_navigation-text-block">Work,</div></a>
+                  <a href="#contact" class="nav_navigation-link-block w-inline-block"><div class="nav_navigation-text-block">Contact,</div></a>
+                  <a
+                    href="https://drive.google.com/file/d/1J9fxU05jlDcspfWtShhnx37kvq9riTpU/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="nav_navigation-link-block w-inline-block"
+                  ><div class="nav_navigation-text-block">CV</div></a>
+                </div>
+              </div>
+              <div class="nav_navigation-container">
+                <div class="nav_theme-text-wrapper"><div class="nav_theme-text-header">Local Time</div></div>
+                <div class="nav_theme-wrapper">
+                  <div class="nav_theme-link-block"><div nw-time="india" class="nav_theme-text-block">00:00:00 AM</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="overlay-div"></div>
+      <div class="work_showcase-pic-holder hf-banner-holder">
+        <img
+          class="work_showcase-pic-img hf-banner"
+          src="../images/huggingface-pr-banner.webp?v=20261101"
+          alt="Hugging Face Hub pull request #5080 merged, with a comment confirming release in v2.4.0"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </div>
+    </section>
+
+    <div class="page-wrapper">
+      <section class="work_showcase-content-section">
+        <div class="work_showcase-content-container">
+          <div class="work_showcase-content-wrapper-flex">
+            <div class="selected-project-wrapper-flex">
+              <div class="blue-line-div"></div>
+              <div class="selected-project-text-wrapper">
+                <div class="selected-projects-text">Open-Source Contribution</div>
+              </div>
+            </div>
+            <div class="showcase-project-name-wrapper">
+              <h1 class="showcase-project-name-heading">Hugging Face Hub</h1>
+            </div>
+
+            <div class="showcase-project-about-wrapper">
+              <div class="sc-project-about-head-wrapper">
+                <h2 class="sc-project-about-heading">Same-Bucket File Copy Support in HfFileSystem</h2>
+              </div>
+              <div class="sc-project-about-paragraph-wrapper">
+                <p class="sc-project-about-paragraph">
+                  I contributed same-bucket file copy support to Hugging Face Hub's <code>HfFileSystem</code>. The
+                  change enables supported file operations within Hugging Face Storage Buckets, including server-side
+                  copies by hash for Xet-backed files.
+                </p>
+              </div>
+            </div>
+
+            <div class="showcase-project-about-wrapper">
+              <div class="sc-project-about-head-wrapper">
+                <h2 class="sc-project-about-heading">An Official Feature in v2.4.0</h2>
+              </div>
+              <div class="sc-project-about-paragraph-wrapper">
+                <p class="sc-project-about-paragraph">
+                  PR #5080 was merged and released in <code>huggingface_hub v2.4.0</code>. Same-bucket copy also
+                  enables supported <code>mv</code> and <code>rename</code> workflows through copy-then-delete
+                  behavior.
+                </p>
+                  <p class="sc-project-about-paragraph">
+                    The implementation includes end-to-end coverage for copy, move, rename, and unsupported paths.
+                    Cross-bucket and bucket-to-repository copies remain unsupported.
+                  </p>
+              </div>
+            </div>
+
+            <div class="showcase-project-about-wrapper">
+              <div class="sc-project-about-head-wrapper">
+                <h2 class="sc-project-about-heading">Merged Upstream</h2>
+              </div>
+              <div class="sc-project-about-paragraph-wrapper">
+                <p class="sc-project-about-paragraph">
+                  <a class="link" href="https://github.com/huggingface/huggingface_hub/pull/5080" target="_blank" rel="noopener noreferrer">Merged PR #5080</a>
+                  ·
+                  <a class="link" href="https://github.com/huggingface/huggingface_hub/releases/tag/v2.4.0" target="_blank" rel="noopener noreferrer">huggingface_hub v2.4.0 release</a>
+                </p>
+              </div>
+            </div>
+
+            <div class="btn_13_wrap live-link">
+              <a
+                href="https://github.com/huggingface/huggingface_hub/pull/5080"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn_13 w-inline-block"
+              >
+                <div class="btn_12_content"><div class="btn_6_text">View merged contribution →</div></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="prev-next-link-container">
+        <div class="prev-next-link-flex">
+          <a href="/all-work/gravitas" class="prev-link-flex w-inline-block">
+            <div class="prev-proj-text">Gravitas</div>
+            <div class="link-to-prev">← Prev. Project</div>
+          </a>
+          <a href="/all-work/devsage" class="next-link-flex w-inline-block">
+            <div class="next-proj-text">DevSage</div>
+            <div class="link-to-next">Next Project →</div>
+          </a>
+        </div>
+      </div>
+
+      <footer id="contact" class="hf-footer">
+        <nav class="hf-footer__links" aria-label="Footer navigation">
+          <a href="/about">About</a>
+          <a href="/work">Work</a>
+          <a href="/playground">Playground</a>
+          <a href="mailto:ankittiwari70651@gmail.com">Contact</a>
+        </nav>
+        <div class="hf-footer__socials">
+          <a href="https://github.com/ankitkumartiwari-web" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/ankit-kumar-tiwari-565a56257/" target="_blank" rel="noopener noreferrer">
+            LinkedIn
+          </a>
+          <a href="https://www.behance.net/ankit_tiwari" target="_blank" rel="noopener noreferrer">Behance</a>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const menuToggle = document.querySelector(".nav_hamburger_wrap-flip");
+      const mobileMenu = document.querySelector("#hf-mobile-menu");
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+        menuToggle.setAttribute("aria-expanded", String(!isOpen));
+        menuToggle.setAttribute("aria-label", isOpen ? "Open navigation menu" : "Close navigation menu");
+        mobileMenu.classList.toggle("is-open", !isOpen);
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const clock = document.querySelector("[nw-time='india']");
+        const updateClock = () => {
+          clock.textContent = new Intl.DateTimeFormat("en-US", {
+            timeZone: "Asia/Kolkata",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+          }).format(new Date());
+        };
+        updateClock();
+        window.setInterval(updateClock, 1000);
+      });
+    </script>
+  </body>
+</html>

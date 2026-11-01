@@ -63,6 +63,68 @@
       .gravitas-project-art__footer {
         color: rgba(245, 245, 245, 0.8);
       }
+
+      .huggingface-project-art {
+        box-sizing: border-box;
+        display: flex;
+        aspect-ratio: 696 / 500;
+        width: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: clamp(1.25rem, 3vw, 3rem);
+        overflow: hidden;
+        background: #171717;
+        color: #f5f5f5;
+      }
+
+      .huggingface-project-art__meta,
+      .huggingface-project-art__footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        font-size: clamp(0.6rem, 0.8vw, 0.75rem);
+        text-transform: uppercase;
+      }
+
+      .huggingface-project-art__meta {
+        color: #ffd21e;
+      }
+
+      .huggingface-project-art__mark {
+        border-top: 1px solid rgba(245, 245, 245, 0.35);
+        border-bottom: 1px solid rgba(245, 245, 245, 0.35);
+        padding: 1rem 0;
+        font-family: Bebasneue, Impact, sans-serif;
+        font-size: clamp(2.5rem, 6vw, 6rem);
+        line-height: 0.9;
+      }
+
+      .huggingface-project-art__footer {
+        color: rgba(245, 245, 245, 0.8);
+      }
+
+      @keyframes project-card-reveal {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .project-card-reveal.is-revealed {
+        animation: project-card-reveal 600ms ease 400ms both;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .project-card-reveal.is-revealed {
+          animation: none;
+        }
+      }
+
     </style>
     <style>
       @media (min-width: 992px) {
@@ -507,7 +569,7 @@
                 </a>
                 <a
                   href="/all-work/gravitas"
-                  class="all-works-content-wrapper-flex w-inline-block"
+                  class="all-works-content-wrapper-flex w-inline-block project-card-reveal"
                   aria-label="Gravitas open-source contribution case study"
                 >
                   <div class="work-picture-wrapper">
@@ -533,6 +595,32 @@
                 </a>
               </div>
               <div class="works-row-container-flex">
+                <a
+                  href="/all-work/huggingface"
+                  class="all-works-content-wrapper-flex w-inline-block project-card-reveal"
+                  aria-label="Hugging Face Hub open-source contribution case study"
+                >
+                  <div class="work-picture-wrapper">
+                    <div class="huggingface-project-art" aria-hidden="true">
+                      <div class="huggingface-project-art__meta">
+                        <span>Open-source contribution</span>
+                        <span>Hugging Face Hub</span>
+                      </div>
+                      <div class="huggingface-project-art__mark">HfFileSystem</div>
+                      <div class="huggingface-project-art__footer">
+                        <span>Same-bucket file copy</span>
+                        <span>v2.4.0</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="works-content-container-flex">
+                    <div class="work-name-wrapper"><h2 class="works-name-heading">Hugging Face Hub</h2></div>
+                    <div class="work-line-div"></div>
+                    <div class="works-criteria-wrapper">
+                      <div class="works-criteria-text">Open Source | HfFileSystem | Storage Buckets</div>
+                    </div>
+                  </div>
+                </a>
                 <a
                   data-w-id="71f60ba5-f282-9dd2-ae20-f0d1041d90c5"
                   style="
@@ -562,6 +650,8 @@
                     <div class="works-criteria-wrapper"><div class="works-criteria-text">VS Code Extension | AI Developer Tool | Workflow Optimization</div></div>
                   </div>
                 </a>
+              </div>
+              <div class="works-row-container-flex">
                 <a
                   data-w-id="71f60ba5-f282-9dd2-ae20-f0d1041d90d0"
                   style="
@@ -593,8 +683,6 @@
                     </div>
                   </div>
                 </a>
-              </div>
-              <div class="works-row-container-flex">
                 <a
                   data-w-id="bc06f89d-4400-3205-f353-07ab6ea870ef"
                   style="
@@ -626,6 +714,8 @@
                     </div>
                   </div>
                 </a>
+              </div>
+              <div class="works-row-container-flex">
                 <a
                   data-w-id="bc06f89d-4400-3205-f353-07ab6ea870fa"
                   style="
@@ -657,8 +747,6 @@
                     </div>
                   </div>
                 </a>
-              </div>
-              <div class="works-row-container-flex">
                 <a
                   href="/all-work/finora"
                   class="all-works-content-wrapper-flex w-inline-block"
@@ -681,6 +769,8 @@
                     </div>
                   </div>
                 </a>
+              </div>
+              <div class="works-row-container-flex">
                 <a href="/all-work/nazariya" class="all-works-content-wrapper-flex w-inline-block">
                   <div class="work-picture-wrapper">
                     <img
@@ -705,6 +795,33 @@
           </div>
         </div>
       </section>
+      <script>
+        let pendingProjectCards = Array.from(document.querySelectorAll(".project-card-reveal"));
+
+        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          const revealVisibleProjectCards = () => {
+            pendingProjectCards = pendingProjectCards.filter((card) => {
+              const bounds = card.getBoundingClientRect();
+              const isVisible = bounds.bottom > 0 && bounds.top < window.innerHeight;
+
+              if (isVisible) {
+                card.classList.add("is-revealed");
+              }
+
+              return !isVisible;
+            });
+
+            if (pendingProjectCards.length === 0) {
+              window.removeEventListener("scroll", revealVisibleProjectCards);
+              window.removeEventListener("resize", revealVisibleProjectCards);
+            }
+          };
+
+          window.addEventListener("scroll", revealVisibleProjectCards, { passive: true });
+          window.addEventListener("resize", revealVisibleProjectCards);
+          revealVisibleProjectCards();
+        }
+      </script>
       <section id="contact" class="contact-section">
         <div data-w-id="e7b4c948-1bbf-9c9b-00a9-7301be089e89" class="contact-container-flex">
           <div
@@ -1337,4 +1454,3 @@
     </script>
   </body>
 </html>
-
