@@ -79,6 +79,11 @@
         background-color: var(--color--background);
       }
 
+      /* Keep the menu panel consistent with the rest of the portfolio. */
+      .hf-menu-socials {
+        display: none;
+      }
+
       .hf-menu-button {
         padding: 0;
         border: 0;
@@ -142,8 +147,33 @@
           <a href="/about" class="menu_link-flip w-inline-block"><span class="flip-link-text">About</span></a>
           <a href="/work" class="menu_link-flip w-inline-block"><span class="flip-link-text">Work</span></a>
           <a href="#contact" class="menu_link-flip w-inline-block"><span class="flip-link-text">Contact</span></a>
-          <div class="menu_link-flip">
-            <a tr-color-toggle="" href="#" class="toggle_wrap w-inline-block"><div class="toggle_inner"></div></a>
+          <a href="/playground" class="menu_link-flip w-inline-block"><span class="flip-link-text">Playground</span></a>
+          <div class="hf-menu-socials" aria-label="Social links">
+            <a href="https://github.com/ankitkumartiwari-web" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 .296a12 12 0 0 0-3.793 23.4c.6.11.793-.26.793-.577v-2.234c-3.338.726-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.754-1.333-1.754-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.833 2.809 1.303 3.492.997.108-.776.42-1.303.763-1.603-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.469-2.382 1.236-3.222-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 6 0c2.29-1.552 3.296-1.23 3.296-1.23.655 1.653.243 2.874.12 3.176.77.84 1.234 1.912 1.234 3.222 0 4.61-2.804 5.624-5.475 5.921.43.371.823 1.1.823 2.22v3.293c0 .32.19.694.801.576A12.002 12.002 0 0 0 12 .297z"></path>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/ankit-kumar-tiwari-565a56257/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 29 30" aria-hidden="true">
+                <path d="M26.36 0H2.64C1.18 0 0 1.22 0 2.73v24.54C0 28.78 1.18 30 2.64 30h23.72C27.82 30 29 28.78 29 27.27V2.73C29 1.22 27.82 0 26.36 0ZM9.17 24.55H5.28V11.6h3.89v12.95ZM7.18 9.75c-1.25 0-2.26-1.05-2.26-2.34s1.01-2.35 2.26-2.35 2.27 1.05 2.27 2.35-1.02 2.34-2.27 2.34Zm16.55 14.8h-3.89v-6.3c0-1.5-.03-3.43-2.02-3.43-2.03 0-2.34 1.63-2.34 3.32v6.41H11.6V11.6h3.73v1.77h.05c.52-1.02 1.79-2.09 3.68-2.09 3.94 0 4.67 2.68 4.67 6.17v7.1Z"></path>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/annkiit___/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 30 30" aria-hidden="true">
+                <path d="M8.33 0A8.34 8.34 0 0 0 0 8.33v13.34A8.34 8.34 0 0 0 8.33 30h13.34A8.34 8.34 0 0 0 30 21.67V8.33A8.34 8.34 0 0 0 21.67 0H8.33ZM25 3.33a1.67 1.67 0 1 1 0 3.34 1.67 1.67 0 0 1 0-3.34ZM15 6.67a8.33 8.33 0 1 1 0 16.66 8.33 8.33 0 0 1 0-16.66Zm0 3.33a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z"></path>
+              </svg>
+            </a>
+            <a href="https://www.behance.net/ankit_tiwari" target="_blank" rel="noopener noreferrer" aria-label="Behance">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8.23 15.01H6v-2.01h2.26c1.88 0 2 2.01-.03 2.01Zm6.76-2.68H18c-.12-1.71-2.73-1.98-3.01 0ZM8.19 9H6v2h2.39c1.67 0 1.94-2-.2-2ZM24 5v14a5 5 0 0 1-5 5H5a5 5 0 0 1-5-5V5a5 5 0 0 1 5-5h14a5 5 0 0 1 5 5Zm-10 3h5V7h-5v1Zm-3.55 3.62c1.9-.98 1.84-4.55-1.81-4.61H4v9.98h4.31c4.52 0 4.45-4.53 2.14-5.37Zm9.48.6c-.27-1.76-1.53-2.95-3.58-2.95-2.1 0-3.35 1.34-3.35 3.95 0 2.63 1.36 3.78 3.41 3.78s3.11-1.13 3.4-2h-2.11c-.73.86-2.89.52-2.76-1.35h5.06c.01-.64-.01-1.09-.07-1.43Z"></path>
+              </svg>
+            </a>
+          </div>
+          <div class="menu_link-flip hf-menu-toggle">
+            <a tr-color-toggle="" href="#" class="toggle_wrap w-inline-block" aria-label="Toggle color theme">
+              <div class="toggle_inner"></div>
+            </a>
           </div>
         </div>
       </nav>
@@ -308,6 +338,26 @@
         menuToggle.setAttribute("aria-expanded", String(!isOpen));
         menuToggle.setAttribute("aria-label", isOpen ? "Open navigation menu" : "Close navigation menu");
         mobileMenu.classList.toggle("is-open", !isOpen);
+        menuToggle.closest(".fixed-flip-menu").classList.toggle("is-open", !isOpen);
+      });
+
+      mobileMenu.addEventListener("click", (event) => {
+        if (event.target.closest("a") && !event.target.closest("[tr-color-toggle]")) {
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "Open navigation menu");
+          mobileMenu.classList.remove("is-open");
+          menuToggle.closest(".fixed-flip-menu").classList.remove("is-open");
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && menuToggle.getAttribute("aria-expanded") === "true") {
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "Open navigation menu");
+          mobileMenu.classList.remove("is-open");
+          menuToggle.closest(".fixed-flip-menu").classList.remove("is-open");
+          menuToggle.focus();
+        }
       });
 
       document.addEventListener("DOMContentLoaded", () => {

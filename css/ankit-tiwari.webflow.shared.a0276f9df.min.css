@@ -929,6 +929,14 @@ textarea.w-select {
 	}
 }
 
+/* Preserve the floating menu proportions on narrow screens. */
+@media screen and (max-width:479px) {
+	.menu_contain-flip {
+		width: min(22.5rem, calc(100vw - 2.2rem));
+		max-width: calc(100vw - 2.2rem)
+	}
+}
+
 @media screen and (max-width:767px) {
 
 	.w-hidden-main,
@@ -2710,6 +2718,82 @@ a {
 	border-radius: 100vw;
 	width: 2.3rem;
 	height: 100%
+}
+
+/* Shared floating navigation panel */
+.menu_wrap-flip {
+	box-sizing: border-box;
+	align-items: flex-end;
+	justify-content: flex-end;
+	padding: 1.1rem;
+	height: 100dvh
+}
+
+.menu_base-flip {
+	display: none
+}
+
+.menu_contain-flip {
+	box-sizing: border-box;
+	background: var(--color--background);
+	border: 1px solid var(--color--text);
+	border-radius: 12px;
+	width: min(22.5rem, calc(100vw - 2.2rem));
+	max-width: calc(100vw - 2.2rem);
+	height: 25rem;
+	padding: 1.8rem 1.5rem
+}
+
+.menu_link-flip {
+	display: block
+}
+
+.flip-link-flex {
+	justify-content: space-between;
+	display: flex
+}
+
+.menu_link-flip.is--flex,
+.hf-menu-socials {
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	margin-top: 1.5rem;
+	display: flex
+}
+
+.hf-menu-socials a {
+	color: inherit;
+	justify-content: center;
+	align-items: center;
+	display: inline-flex
+}
+
+.hf-menu-socials svg {
+	width: 1.75rem;
+	height: 1.75rem;
+	fill: currentColor
+}
+
+.menu_contain-flip > .hf-menu-socials {
+	display: flex !important
+}
+
+.hf-menu-button[aria-expanded=true] .nav_hamburger_base-flip {
+	border-color: transparent;
+	background: transparent
+}
+
+.menu_contain-flip .nav_hamburger_base-flip {
+	border-color: transparent;
+	background: transparent
+}
+
+@media screen and (max-width: 479px) {
+	.menu_contain-flip {
+		height: min(25rem, calc(100dvh - 2.2rem));
+		padding: 1.8rem 1.5rem
+	}
 }
 
 .project-content-wrapper-flex {
