@@ -2785,8 +2785,7 @@ a {
 }
 
 .menu_contain-flip .nav_hamburger_base-flip {
-	border-color: transparent;
-	background: transparent
+	display: none
 }
 
 @media screen and (max-width: 479px) {
